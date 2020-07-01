@@ -6,15 +6,15 @@ services: docker
 
 before_install:
   - heroku update
-  - docker-compose -f docker-compose.yml up --build -d
+  # - docker-compose -f docker-compose.yml up --build -d
   # - heroku auth:token
   # - docker login -u "$HEROKU_USERNAME" -p "$HEROKU_API_KEY" registry.heroku.com
-  - export HEROKU_API_KEY='b67b21cf-0f7d-4273-88d8-062c5d7ed73b'
+  # - export HEROKU_API_KEY='b67b21cf-0f7d-4273-88d8-062c5d7ed73b'
   - heroku login
   - heroku info
 
 script:
-  - docker-compose -f docker-compose.yml exec web python manage.py test
+  # - docker-compose -f docker-compose.yml exec web python manage.py test
 # deploy:
 #   provider: script
 #   skip_cleanup: true
