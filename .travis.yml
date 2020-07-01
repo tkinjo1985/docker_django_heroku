@@ -17,6 +17,7 @@ deploy:
   script:
     docker build -t registry.heroku.com/$HEROKU_APP_NAME/web -f Dockerfile .;
     docker push registry.heroku.com/$HEROKU_APP_NAME/web;
+    heroku ps:scale web=1;
     heroku run --app registry.heroku.com/$HEROKU_APP_NAME/web python manage.py runserver 0.0.0.0:8000
   on:
     branch: master
