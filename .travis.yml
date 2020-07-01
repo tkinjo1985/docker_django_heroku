@@ -7,20 +7,20 @@ services: docker
 before_install:
   - heroku update
   - docker-compose -f docker-compose.yml up --build -d
+  - heroku auth:token
   # - docker login -u "$HEROKU_USERNAME" -p "$HEROKU_API_KEY" registry.heroku.com
 
 script:
   - docker-compose -f docker-compose.yml exec web python manage.py test
-
-deploy:
-  provider: script
-  skip_cleanup: true
-  script: heroku login;
-    heroku git:remote --app $HEROKU_APP_NAME;
-    git push heroku master;
-    heroku run python manage.py migrate;
-  on:
-    branch: master
+# deploy:
+#   provider: script
+#   skip_cleanup: true
+#   script: heroku login;
+#     heroku git:remote --app $HEROKU_APP_NAME;
+#     git push heroku master;
+#     heroku run python manage.py migrate;
+#   on:
+#     branch: master
 # deploy:
 #   provider: script
 #   skip_cleanup: true
