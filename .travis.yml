@@ -13,11 +13,11 @@ before_install:
 
 script:
   - docker-compose -f docker-compose.yml exec web python manage.py test
+
 deploy:
   provider: heroku
-  api_key:
-    secure: Z43awGyW7jDkEr4pNUnn3HuLDDY8wgs/QJOlil/pw0KQFOB5MbSAD0u8NQtxzMecce2jH1zACwXuRvYhdx5mnaMK7w16ymftIR8XujP0oIV6JyAl0HakwgxokwWKLm5C9gzSgy6nyI+nsZAbpfeDi1KCmXzLcehW6/pxUSRmTHPBztkoaK0NkWCnWLU3vVWR0O+Mx+KUzzNWtyzckDPRu6Al/ihZypeqpJ7mlw7BzcezOUYiqo0su+YL5I1OYv8mvUvzYbRr1NOfhasoph8rbCoeuIgEjLzEg2gY0k/hmBwdTP8MgPC9DiBB7w3gbzNuS7Qgdx2BCx9ZE/cvAp3iJOw2T4l9Yp+sczgsjaLx4WqEJnhiZFYiRTTO7pNVJsSRwYMpkaanPJwLPQgOSUC52z9lgHznxXkngmnT+uL1BSAMqD6OztJMGM1jypyzCWkceJz8KzsMOmDgUEF9ijDpYqqKkwKbwKvkr9RMI+lZNUbU+/7LWs2ZT0EGuElJ7J2f6SOsXs9XaUk/w5HQt111rmqn8ra2KJPPi+celDHzMmGyLc10/bcqUxciFUuCd0rHHjm5kP7CiMsvHrnbXpTygjfTSqOqkjCoxR8XYkTR5Xvyc40QacarzmE5pA2OMaf/662YqVpYnmglarWmXaTnlO+4dIEtVMu3bPkexgN0hCA=
-  skip_cleanup: true
+  api_key: b67b21cf-0f7d-4273-88d8-062c5d7ed73b
+  cleanup: true
   app: docker_django_heroku
   run:
     - "heroku git:remote --app $HEROKU_APP_NAME"
