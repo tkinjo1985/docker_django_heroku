@@ -15,6 +15,7 @@ deploy:
   provider: script
   skip_cleanup: true
   script: heroku login;
+    heroku git:remote --app $HEROKU_APP_NAME;
     git push heroku master;
     heroku run python manage.py migrate;
   on:
