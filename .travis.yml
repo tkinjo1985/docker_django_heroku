@@ -14,9 +14,8 @@ script:
 deploy:
   provider: script
   skip_cleanup: true
-  script:
-    docker build -t registry.heroku.com/$HEROKU_APP_NAME/web -f Dockerfile .;
-    docker push registry.heroku.com/$HEROKU_APP_NAME/web;
-    heroku run --app registry.heroku.com/$HEROKU_APP_NAME/web python manage.py runserver 0.0.0.0:8000
+  script: heroku login;
+    git push heroku master;
+    heroku run python manage.py migrate;
   on:
     branch: master
