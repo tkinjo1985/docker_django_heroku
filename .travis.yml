@@ -5,6 +5,7 @@ language: python
 services: docker
 
 before_install:
+  - heroku update
   - docker-compose -f docker-compose.yml up --build -d
   # - docker login -u "$HEROKU_USERNAME" -p "$HEROKU_API_KEY" registry.heroku.com
 
