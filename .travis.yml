@@ -9,7 +9,7 @@ before_install:
   - docker-compose -f docker-compose.yml up --build -d
   # - heroku auth:token
   # - docker login -u "$HEROKU_USERNAME" -p "$HEROKU_API_KEY" registry.heroku.com
-  - export $HEROKU_API_KEY = 'b67b21cf-0f7d-4273-88d8-062c5d7ed73b'
+  - export HEROKU_API_KEY='b67b21cf-0f7d-4273-88d8-062c5d7ed73b'
   - heroku login
   - heroku info
 
