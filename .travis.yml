@@ -9,6 +9,7 @@ before_install:
   - docker-compose -f docker-compose.yml up --build -d
   # - heroku auth:token
   - docker login -u "$HEROKU_USERNAME" -p "$HEROKU_API_KEY" registry.heroku.com
+  - heroku info
 
 script:
   - docker-compose -f docker-compose.yml exec web python manage.py test
