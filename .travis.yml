@@ -6,7 +6,7 @@ services: docker
 
 before_install:
   - heroku update
-  - docker-compose -f docker-compose.yml up --build
+  - docker-compose -f docker-compose.yml up --build -d
 
 script:
   - docker-compose -f docker-compose.yml exec web python manage.py test

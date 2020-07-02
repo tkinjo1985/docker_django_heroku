@@ -8,11 +8,11 @@ services:
       - "8000:8000"
     volumes:
       - .:/workdir
-    environment:
-      - SECRET_KEY='@mo2+rki#*%^p@z86#)6^u*g+07+dor-_(&hszdr9ys2qxwjx5'
-      - HEROKU_API_KEY='b67b21cf-0f7d-4273-88d8-062c5d7ed73b'
-    command: >
-      bash -c "python manage.py migrate &&
-              gunicorn config.wsgi:application --bind 0.0.0.0:8000 "
+    # environment:
+    #   - SECRET_KEY='@mo2+rki#*%^p@z86#)6^u*g+07+dor-_(&hszdr9ys2qxwjx5'
+    #   - HEROKU_API_KEY='b67b21cf-0f7d-4273-88d8-062c5d7ed73b'
+    # command: >
+    #   bash -c "python manage.py migrate &&
+    #           gunicorn config.wsgi:application --bind 0.0.0.0:8000 "
     tty: true
     stdin_open: true
