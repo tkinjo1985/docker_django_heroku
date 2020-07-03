@@ -12,6 +12,6 @@ services:
       - SECRET_KEY=$SECRET_KEY
       - HEROKU_API_KEY=$HEROKU_API_KEY
     command: >
-      bash -c "yes | travis encrypt $HEROKU_API_KEY --add deploy.api_key && python manage.py migrate"
+      bash -c "yes | travis && yes | travis encrypt $HEROKU_API_KEY --add deploy.api_key && python manage.py migrate"
     tty: true
     stdin_open: true
