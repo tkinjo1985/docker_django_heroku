@@ -4,15 +4,9 @@ services:
   web:
     build:
       context: .
-      dockerfile: Dockerfile.prod
     ports:
       - "8000:8000"
     volumes:
       - .:/workdir
-    environment:
-      - SECRET_KEY=$SECRET_KEY
-      - HEROKU_API_KEY=$HEROKU_API_KEY
-    command: >
-      bash -c "yes | travis && yes | travis encrypt $HEROKU_API_KEY --add deploy.api_key"
     tty: true
     stdin_open: true
