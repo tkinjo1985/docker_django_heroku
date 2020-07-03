@@ -1,29 +1,19 @@
-from .base import *
 import environ
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
+from .base import *
 
-# SECURITY WARNING: keep the secret key used in production secret!
+# .envからSECRET_KEYを読み込む
 env = environ.Env()
 env.read_env(os.path.join(BASE_DIR, '.env'))
 SECRET_KEY = env('SECRET_KEY')
 
-# SECURITY WARNING: don't run with debug turned on in production!
+# 開発環境のためデバッグをTrueにする
 DEBUG = True
 
+# 全てのホストからのアクセスを許可
 ALLOWED_HOSTS = ['*']
 
-# Database
-# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
-
+# .envからDatabaseを読み込む
 DATABASES = {
     'default': env.db()
 }
