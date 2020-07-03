@@ -16,6 +16,6 @@ deploy:
   skip_cleanup: true
   app: docker-django-heroku
   run:
-    - heroku run python manage.py migrate
+    - python manage.py migrate
   on:
     branch: master
