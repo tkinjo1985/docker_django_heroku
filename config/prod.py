@@ -3,18 +3,19 @@ import environ
 
 from .base import *
 
-# .envからSECRET_KEYを読み込む
+# Herokuに設定した環境変数を読み込む
 env = environ.Env()
-env.read_env(os.path.join(BASE_DIR, '.env'))
+
+#  SECRET_KEYはHerokuの環境設定から設定
 SECRET_KEY = env('SECRET_KEY')
 
 # 本番環境ではデバッグをFalseにする
 DEBUG = False
 
-# 本番環境ではドメインからのアクセスのみ許可
+# ALLOWED_HOSTSはHerokuの環境設定から設定
 ALLOWED_HOSTS = env('ALLOWED_HOSTS')
 
-# HerokuのPostgres_URLを読み込む
+# HerokuのPostgres_URLを設定
 DATABASES = {
     'default': dj_database_url.config()
 }
