@@ -5,7 +5,8 @@ FROM python:latest
 WORKDIR /workdir
 
 # パッケージ情報の更新とsudoのインストール
-RUN apt-get update && apt-get install -y sudo
+RUN apt-get update && apt-get install -y sudo ruby ruby-dev
+RUN gem install travis
 
 # pipをアップグレード
 RUN pip install --upgrade pip
