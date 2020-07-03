@@ -5,6 +5,7 @@ before_install:
   - heroku update
   - touch .env
   - echo SECRET_KEY=$SECRET_KEY >> .env
+  - echo DATABASE_URL=$DATABASE_URL >> .env
   - docker-compose -f docker-compose.dev.yml up --build
 script:
   - docker-compose -f docker-compose.dev.yml exec web python manage.py test
