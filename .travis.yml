@@ -2,20 +2,16 @@ sudo: required
 language: python
 services: docker
 before_install:
-  - heroku update
+  - docker login --username=_ --password=$(heroku auth:token) registry.heroku.com
   - touch .env
   - echo SECRET_KEY=$SECRET_KEY >> .env
   - echo DATABASE_URL=$DATABASE_URL >> .env
   - docker-compose up --build -d
 script:
   - docker-compose exec web python manage.py test
-# deploy:
-#   provider: heroku
-#   api_key:
-#     secure: gKgtr2qWUS58wa0U+fHzMOF0SaJoNsjiWNwwdz8cjrEtCw16QXUk0yGvSUYKJqMo6bDJmZjXc2tyNGpPGblqWtpjYReuBNyvgf+ic7bhRBlEJNdA25IXF4oXV3411fOh0Qq/6LBv+XFjKWJTRbc4nIo5Knk1DmMDn1FhOvcf4K8hOkUeOD+GsY3zIbX87yaotlB+2nPlJktnWLREPkwX9uokeQbeXIU7zsi55K1u+b5S8euqMpVHsqErFQW4dLXDU70Gdcx5nRKSpix1+7oeGMtNyK6HIxLYTd09jvPG0wdW5tiFnOpnhZFViMzvgPIJDgFS+uHm88/fdVaTBi/PO0A4GkHhnqa8uQYTDBp3zQGqGnfJ8kYeCGSonhIJtL+io0MfILe0yiT2MFoRjOsQxDbhtLk+nw+2hWL5GVyXTEbZfPx3V4PKbVP8wZ9qhvOTubY10jMAWywPhc2vHIJ5IJdusUj59W4AIL+x/ewk7ZFo7fC6oftDGfeARZ7AWgoIZhuQ5JzaShDq/TETdC17rFiWG9Q/mKXnpjcI8GB5xdG46Y2FtHu/lGVGhIK5QpSZotwKm81HQXfW87h3vCngBBlHa0CWQWVClIm8FfXRKVsHPc4nJxxgifrQikAIGfIEdfLA7xmHhIjmbZKmvGgRZdoAu/j4m4K1QxAsPRc8Vf4=
-#   skip_cleanup: true
-#   app: docker-django-heroku
-#   run:
-#     - python manage.py migrate
-#   on:
-#     branch: master
+
+deploy:
+  provider: script
+  script: heroku container:login;
+    heroku container:push web --recursive Dockerfile.prod
+    heroku container:release web

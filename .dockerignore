@@ -1,0 +1,7 @@
+.env
+.travis.yml
+.git
+.vscode
+.DS_Store
+.gitignore
+.docker-compose.yml

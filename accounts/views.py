@@ -5,4 +5,4 @@ from django.http import HttpResponse
 
 
 def index(request):
-    return HttpResponse("テスト成功！")
+    return HttpResponse("本番環境デプロイ")

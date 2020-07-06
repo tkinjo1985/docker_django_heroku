@@ -10,7 +10,7 @@ env = environ.Env()
 SECRET_KEY = env('SECRET_KEY')
 
 # 本番環境ではデバッグをFalseにする
-DEBUG = False
+DEBUG = env("DEBUG_MODE")
 
 # ALLOWED_HOSTSはHerokuの環境設定から設定
 ALLOWED_HOSTS = env('ALLOWED_HOSTS')
