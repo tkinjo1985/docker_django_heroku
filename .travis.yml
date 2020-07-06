@@ -4,7 +4,6 @@ services: docker
 before_install:
   - heroku update
   - docker login --username=$HEROKU_USERNAME --password=$HEROKU_API_KEY registry.heroku.com
-  - heroku git:remote -a $HEROKU_APP_NAME
   - touch .env
   - echo SECRET_KEY=$SECRET_KEY >> .env
   - echo DATABASE_URL=$DATABASE_URL >> .env
