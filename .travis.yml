@@ -13,6 +13,7 @@ script:
 
 deploy:
   provider: script
+  skip_cleanup: true
   script: heroku container:login;
     heroku container:push web --recursive --app docker-django-heroku;
     heroku container:release web --app docker-django-heroku;
