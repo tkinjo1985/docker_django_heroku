@@ -2,9 +2,18 @@ sudo: required
 language: python
 services: docker
 before_install:
+  - heroku login -u $HEROKU_USERNAME -p $HEROKU_API_KEY regstry.heroku.com
   - touch .env
   - echo SECRET_KEY=$SECRET_KEY >> .env
   - echo DATABASE_URL=$DATABASE_URL >> .env
   - docker-compose up --build -d
 script:
   - docker-compose exec web python manage.py test
+
+deploy:
+  provider: script
+  script: heroku container:login;
+    heroku container:push web --app docker-django-heroku;
+    heroku container:release web --app docker-django-heroku
+  on:
+    branch: master
