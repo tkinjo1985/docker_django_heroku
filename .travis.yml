@@ -2,6 +2,7 @@ sudo: required
 language: python
 services: docker
 before_install:
+  - heroku update
   - docker login --username "$HEROKU_USERNAME" --password "$HEROKU_API_KEY" registry.heroku.com
   - touch .env
   - echo SECRET_KEY=$SECRET_KEY >> .env
@@ -12,6 +13,7 @@ script:
 
 deploy:
   provider: script
+  skip_cleanup: true
   script: heroku container:login;
     heroku container:push web --app docker-django-heroku;
     heroku container:release web --app docker-django-heroku
