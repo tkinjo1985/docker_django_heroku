@@ -18,12 +18,11 @@ services:
   web:
     build:
       context: .
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
     ports:
       - "8000:8000"
     volumes:
       - .:/workdir
-    # command: python manage.py runserver 0.0.0.0:8000
     tty: true
     stdin_open: true
     depends_on:
