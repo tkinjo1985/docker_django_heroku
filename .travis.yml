@@ -15,7 +15,5 @@ deploy:
   provider: script
   skip_cleanup: true
   script: heroku container:login;
-    heroku container:push web --app docker-django-heroku;
-    heroku container:release web --app docker-django-heroku
-  on:
-    branch: master
+    heroku container:push web --app $HEROKU_APP_NAME;
+    heroku container:release web --app $HEROKU_APP_NAME;
